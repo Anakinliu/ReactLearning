@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串形式的ref</title>
+</head>
+<body>
+
+    <div id="box"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+    
+    class MyComp extends React.Component {
+        show = () => {
+            // console.log(document.getElementById("left_input").value);
+            // 拿到的是真实DOM节点!!!
+            // console.log(this.refs.left);
+            alert(this.refs.left.value);
+            
+        }
+
+        show2 = () => {
+            alert(this.refs.right.value);
+        }
+        // 字符串形式的ref会在未来版本被废弃
+        render(h) {
+            return (
+                <div>
+                <h1>TITLE</h1>
+                <input className="sss" ref="left" id="left_input" placeholder="输入后点击按钮"/>
+                <button id="show" onClick={ this.show }>点击按钮</button>
+                <input onBlur={ this.show2 } ref="right" id="right_input" placeholder="输入后点击空白"/>
+            </div>
+            )   
+        }
+    }
+
+    ReactDOM.render(<MyComp />, document.getElementById("box"))
+    
+    </script>
+</body>
+</html>

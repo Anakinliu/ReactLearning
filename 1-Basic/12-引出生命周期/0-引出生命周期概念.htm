@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引出</title>
+</head>
+
+<body>
+    <div id="rong-qi"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        class Life extends React.Component {
+
+            state = {
+                opacity: 1
+            }
+
+            handleBtn = () => {
+                // 清除之前用来更新组件state状态的的定时器
+                clearInterval(this.interval);
+                // 让组件消失(卸载)
+                ReactDOM.unmountComponentAtNode(document.getElementById("rong-qi"));
+            }
+
+            // 组件即将被卸载时
+            componentWillUnmount(){
+                console.log('will unmount');
+            }
+
+            // 需要一个方法, 在挂载好DOM时执行一次
+            componentDidMount() {
+                console.log('componentDidMount', this);
+                this.interval = setInterval(()=>{
+                    let opacity = this.state.opacity - 0.1;
+                    if (opacity <= 0) {
+                        opacity = 1;
+                    }
+                    this.setState({
+                        opacity 
+                    });
+                }, 200);
+            }
+
+            render() {
+                // console.log('render', this);
+                return (
+                    <div>
+                        <h1 style={{opacity: this.state.opacity}} >天气情况</h1>
+                        <div></div>
+                        <button onClick={ this.handleBtn }>消失</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Life />, document.getElementById("rong-qi"));
+    </script>
+</body>
+
+</html>

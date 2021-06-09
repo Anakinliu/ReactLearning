@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Animal {
+            constructor() {
+                //...
+                this.d = 5;  // 覆盖外面的 d
+            }
+            a = 2  // 定义了实例上的一个属性
+            b = 3
+            d = 6  // 会被同名的this.d覆盖
+            static c = 9;  // 相当于在外面写Animal.c = x,如果两种情况都写,因为外面写的晚,所以会被外面的覆盖
+        }
+        Animal.c = 4;  // 其实是定义在了constructor上的属性
+        console.log(Animal);  // 类的声明时的字符串
+        console.dir(Animal);
+        console.log((new Animal()));
+        console.log((new Animal()).constructor.c);  // 4
+        console.log((new Animal()).constructor === Animal);  // true
+        console.log(new Animal().a);//2
+        console.log(new Animal().b);//3
+        console.log(new Animal().c);//undefined,,实例看不到类属性
+        console.log(new Animal().d);//5
+        console.log(Animal.a);//undefined
+        console.log(Animal.c);//4
+
+        console.log('-----');
+        function Person() {
+            let a = 2;
+            let b = 3;
+            c = 4;
+            d = 5;
+        }
+        Person.e = 6;
+        console.log((new Person()).constructor === Person);//true
+        console.log((new Person()).constructor.e);//6
+        console.log(Person);  // 类的声明时的字符串
+        console.log(new Person().a);//undefined
+        console.log(new Person().c);//undefined
+        console.log(new Person().e);//undefined
+        console.log(Person.a);//undefined
+        console.log(Person.c);//undefined
+        console.log(Person.e);//6
+    </script>
+</body>
+
+</html>

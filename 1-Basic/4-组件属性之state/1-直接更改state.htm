@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直接更改state</title>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel" >
+        class MyComp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    isHot: true
+                }
+                this.clickHandle = this.clickHandle.bind(this);
+            }
+            clickHandle() {
+                console.log(this.state.isHot);
+                this.state.isHot = !this.state.isHot;
+                console.log(this.state.isHot);  //确实更改了,但是没有 JSX 里没有改
+                console.log('---');
+            }
+            render() {
+                const isHot = this.state.isHot;
+                return (
+                    <h1 onClick={ this.clickHandle }> { isHot ? '炎热': '凉爽' } </h1>
+                );
+            }
+        }
+
+        ReactDOM.render(<MyComp/>, document.getElementById("box"));
+    </script>
+</body>
+</html>

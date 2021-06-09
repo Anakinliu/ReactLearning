@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回调的ref的执行次数</title>
+</head>
+
+<body>
+
+    <div id="box"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <!-- 
+ 
+关于回调 refs 的说明
+如果 ref 回调函数是以内联函数的方式定义的，
+在更新过程中它会被执行两次，
+第一次传入参数 null，然后第二次会传入参数 DOM 元素。
+这是因为在每次渲染时会创建一个新的函数实例，所以 React 清空旧的 ref 并且设置新的。
+通过将 ref 的回调函数定义成 class 的绑定函数的方式可以避免上述问题，但是大多数情况下它是无关紧要的。
+         
+
+     -->
+    <script type="text/babel">
+
+        class MyComp extends React.Component {
+
+            constructor(props) {
+                super(props);
+                console.log('constructor');
+                // 先执行构造器,再执行下面的render
+            }
+
+            state = {
+                isHot: false
+            }
+
+            show = () => {
+                // 拿到的是真实DOM节点!!!
+                alert(this.leftInput.value);
+            }
+
+            show2 = () => {
+                alert(this.rightInput.value);
+            }
+
+            weather = () => {
+                this.setState(
+                    {
+                        isHot: !this.state.isHot
+                    }
+                )
+            }
+
+            render(h) {
+                return (
+                    <div>
+                        <h1>TITLE</h1>
+                        <input ref={n => { this.leftInput = n; console.log('left', n); }} id="left_input" placeholder="输入后点击按钮" />
+                        <button id="show" onClick={this.show}>点击按钮</button>
+                        <input ref={n => { this.rightInput = n; console.log('right', n); }} onBlur={this.show2} id="right_input" placeholder="输入后点击空白" />
+                        <br />
+                        <br />
+                        <p>"今天天气"{this.state.isHot ? "炎热" : "凉快"}</p>
+                        <button id="show" onClick={this.weather}>更新此组件的DOM</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyComp />, document.getElementById("box"))
+
+    </script>
+</body>
+
+</html>

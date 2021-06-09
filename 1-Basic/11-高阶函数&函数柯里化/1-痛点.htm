@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="rong-qi"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        class MyForm extends React.Component {
+
+            state = {
+                un: "",
+                pw: ""
+            }
+
+            // 所谓 非 受控,在这里就是需要我们的React"主动"读取节点的状态,值等
+            // 所谓受控,在这里就是节点的状态,值等在改变时,主动向React发送
+            handleForm = (event) => {
+                event.preventDefault();
+                console.log(`username ${this.state.un}, passweord ${this.state.pw}`);
+            }
+
+            changeun = (e) => {
+                this.setState({
+                    un: e.target.value
+                })
+            }
+
+            changepw = (e) => {
+                this.setState(
+                    {
+                        pw: e.target.value
+                    }
+                )
+            }
+            // 太多了相似,重复代码了....
+            changeInput1 = (e) => {
+                
+            }
+            changeInput2 = (e) => {
+
+            }
+            changeInput3 = (e) => {
+
+            }
+            changeInput4 = (e) => {
+
+            }
+            changeInput5 = (e) => {
+
+            }
+            render() {
+                return (
+                    <div>
+                        <form action="https://www.baidu.com" method="POST" onSubmit={this.handleForm}>
+                            用户名:<input onChange={this.changeun} type="text" name="usernmae" autoComplete="on" />
+                            密码:<input onChange={this.changepw} type="password" name="passwprd" autoComplete="on" />
+                            密码:<input onChange={this.changeInput1} type="password" name="passwprd" autoComplete="on" />
+                            密码:<input onChange={this.changeInput2} type="password" name="passwprd" autoComplete="on" />
+                            密码:<input onChange={this.changeInput3} type="password" name="passwprd" autoComplete="on" />
+                            密码:<input onChange={this.changeInput4} type="password" name="passwprd" autoComplete="on" />
+                            密码:<input onChange={this.changeInput5} type="password" name="passwprd" autoComplete="on" />
+                            <input type="submit" value="提交" />
+                        </form>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyForm />, document.getElementById("rong-qi"));
+
+    </script>
+</body>
+
+</html>

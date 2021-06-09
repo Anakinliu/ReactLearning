@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="rong-qi"></div>
+
+
+    <!-- 函数式组件可以作为参数使用props,也可以使用props限制 -->
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        function MyComp(props) {
+            // 函数内就不要写this了
+            return (
+                <ul>
+                    <li>p1-{props.p1}</li>
+                    <li>p2-{props.p2}</li>
+                    <li>p3-{props.p3}</li>
+                    <li>p4-{props.p4}</li>
+
+                </ul>
+            )
+        }
+
+        
+        MyComp.defaultProps = {
+            p4: "我是默认值"
+        };
+        const obj = {
+            p1: "WHAT",
+            p2: 666,
+            p3: "WHETHER",
+
+        };
+        //简写 :
+        ReactDOM.render(<MyComp {...obj} />, document.getElementById("rong-qi"));
+        // 1. 相对传递的值进行类型限制
+        // 2. 设置缺省值
+
+
+    </script>
+
+</body>
+
+</html>

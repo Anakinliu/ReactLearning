@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0-hello</title>
+</head>
+<body>
+    <div id="rong-qi"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        class MyComp extends React.Component {
+            render(h) {
+                console.log(this);
+                return (
+                    <ul>
+                        <li>{ this.props.p1 }</li>
+                        <li>{ this.props.p2 }</li>
+                        <li>{ this.props.p3 }</li>
+                        <li>{ this.props.p4 }</li>
+                    </ul>
+                )
+            }
+        }
+        const obj = {p1:"WHAT", p2:666, p3:"WHETHER"};
+        // ReactDOM.render(<MyComp p1={"WHAT"} p2={666} p3={"WHETHER"} />, document.getElementById("rong-qi"));
+        // 简写 :ReactDOM.render(<MyComp {...obj} />, document.getElementById("rong-qi"));
+        // 这里的简写不是用的ＥＳ６的对象展开!!!
+    </script>
+</body>
+</html>

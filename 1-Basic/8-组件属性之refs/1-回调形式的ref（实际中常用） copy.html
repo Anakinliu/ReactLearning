@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回调形式的ref</title>
+</head>
+<body>
+
+    <div id="box"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+    
+    class MyComp extends React.Component {
+
+        constructor(props) {
+            super(props);
+            console.log('constructor');
+            // 先执行构造器,再执行下面的render
+        }
+
+        show = () => {
+            // 拿到的是真实DOM节点!!!
+            alert(this.leftInput.value);
+            debugger;
+        }
+
+        show2 = () => {
+            alert(this.rightInput.value);
+        }
+
+        // 字符串形式的ref会在未来版本被废弃
+        // 使用回调形式的ref,不用this.refs.形式了
+        render(h) {
+            return (
+                <div>
+                <h1>TITLE</h1>
+                <input ref={ n => {this.leftInput = n; console.log('left');} } id="left_input" placeholder="输入后点击按钮"/>
+                <button id="show" onClick={ this.show }>点击按钮</button>
+                <input ref={ n => {this.rightInput = n; console.log('right');} } onBlur={ this.show2 }  id="right_input" placeholder="输入后点击空白"/>
+            </div>
+            )   
+        }
+    }
+
+    ReactDOM.render(<MyComp />, document.getElementById("box"))
+    
+    </script>
+</body>
+</html>

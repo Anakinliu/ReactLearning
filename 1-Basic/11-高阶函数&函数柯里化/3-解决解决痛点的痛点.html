@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3</title>
+</head>
+
+<body>
+    <div id="rong-qi"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+ 
+    <script type="text/babel">
+// 柯里化:函数调用后依然返回一个函数,蹭蹭接收参数,最后统一处理
+        class MyForm extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    un: "",
+                    pw: "",
+                    input1: "",
+                    input2: "",
+                    input3: "",
+                    input4: "",
+                    input5: ""
+                }
+            }
+
+            // 所谓 非 受控,在这里就是需要我们的React"主动"读取节点的状态,值等
+            // 所谓受控,在这里就是节点的状态,值等在改变时,主动向React发送
+            handleForm = (event) => {
+                event.preventDefault();
+                console.log(this.state);
+            }
+
+            changeInput = (s) => {
+                return (e) => {
+                    this.setState({
+                        [s]: e.target.value
+                    })
+                }
+            }
+            render() {
+                return (
+                    <div>
+                        <form action="https://www.baidu.com" method="POST" onSubmit={this.handleForm}>
+                            用户名:<input onChange={this.changeInput("un")} type="text" name="usernmae" autoComplete="on" />
+                            密码:<input onChange={this.changeInput("pw")} type="password" name="passwprd" autoComplete="on" />
+                            Input 1:<input onChange={this.changeInput("input1")} type="password" name="input1" autoComplete="on" />
+                            Input 2:<input onChange={this.changeInput("input2")} type="password" name="input2" autoComplete="on" />
+                            Input 3:<input onChange={this.changeInput("input3")} type="password" name="input3" autoComplete="on" />
+                            Input 4:<input onChange={this.changeInput("input4")} type="password" name="input4" autoComplete="on" />
+                            Input 5:<input onChange={this.changeInput("input5")} type="password" name="input5" autoComplete="on" />
+                            <input type="submit" value="提交" />
+                        </form>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyForm />, document.getElementById("rong-qi"));
+
+    </script>
+</body>
+
+</html>

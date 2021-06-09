@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="rong-qi"></div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        class MyForm extends React.Component {
+// 所谓 非 受控,在这里就是需要我们的React"主动"读取节点的状态,值等
+// 所谓受控,在这里就是节点的状态,值等在改变时,主动向React发送
+            handleForm = (event) => {
+                event.preventDefault();
+                console.log(`username ${this.un.current.value}, passweord ${this.pw.current.value}`);
+            }
+
+            un = React.createRef();
+            pw = React.createRef();
+
+            render() {
+                return (
+                    <div>
+                        <form action="https://www.baidu.com" method="POST" onSubmit={ this.handleForm }>
+                            用户名:<input ref={ this.un } type="text" name="usernmae" autoComplete="on"/>
+                            密码:<input ref={ this.pw } type="password" name="passwprd" autoComplete="on"/>
+                            <input type="submit" value="提交" />
+                        </form>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<MyForm />, document.getElementById("rong-qi"));
+
+    </script>
+</body>
+
+</html>

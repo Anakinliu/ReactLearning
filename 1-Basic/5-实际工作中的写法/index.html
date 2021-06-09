@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直接更改state</title>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel" >
+class MyComp extends React.Component {
+
+    state = { isHot: true }
+    clickHandle = () => {
+        this.setState(
+            {
+                isHot: !this.state.isHot
+            }
+        )
+    }
+    render() {
+        console.log('渲染!');
+        const isHot = this.state.isHot;
+        return (
+            <h1 onClick={ this.clickHandle }> { isHot ? '炎热': '凉爽' } </h1>
+        );
+    }
+}
+
+        ReactDOM.render(<MyComp/>, document.getElementById("box"));
+    </script>
+</body>
+</html>
