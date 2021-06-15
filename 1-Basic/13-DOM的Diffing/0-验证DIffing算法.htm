@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="rong-qi"></div>
+
+    <script src="../js/17.0.1/react.development.js"></script>
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <script src="../js/17.0.1/babel.min.js"></script>
+
+    <script type="text/babel">
+        class TT extends React.Component {
+
+            state = {
+                time: Date()
+            }
+
+            componentDidMount() {
+                this.intervalID = setInterval(() => {
+                    this.setState({
+                        time: Date()
+                    })
+                }, 1000);
+            }
+
+            render(h) {
+                return (
+                    <div>
+                        <div><span>时间是:</span>{ this.state.time }<input type="text"/></div>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<TT />,document.getElementById("rong-qi"))
+    </script>
+</body>
+
+</html>

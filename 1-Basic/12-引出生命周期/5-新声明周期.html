@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="rong-qi"></div>
+
+    <script src="../js/17.0.1/react.development.js"></script>
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <script src="../js/17.0.1/babel.min.js"></script>
+
+    <script type="text/babel"> 
+        class A extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    num: "222"
+                }
+            }
+
+            handleChange = () => {
+                this.setState({
+                    num: this.state.num * 2
+                })
+            }
+
+            render(h) {
+                return (
+                    <div>
+                        <button onClick={this.handleChange}>改变num</button>
+                        <B num={this.state.num} />
+                    </div>
+                )
+            }
+        }
+
+        class B extends React.Component {
+            constructor(props) {
+                console.log('constructor');
+                super(props)
+            }
+            componentWillMount() {
+                console.log('B|componentWillMount');
+            }
+            componentDidMount() {
+                console.log('B|componentDidMount');
+            }
+            // 第一次接收在页面上显示不会调用
+            // 后面再更新props时才会调用
+            componentWillReceiveProps() {
+                console.log('B|componentWillReceiveProps');
+            }
+
+            shouldComponentUpdate() {
+                console.log('B|shouldComponentUpdate');
+                return true;
+            }
+
+            componentWillUpdate() {
+                console.log('B|componentWillUpdate');
+            }
+
+            componentDidUpdate() {
+                console.log('B|componentDidUpdate');
+            }
+
+            render(h) {
+                console.log('B|render');
+                return (
+                    <div>
+                        B得到的是: {this.props.num}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<A />, document.getElementById("rong-qi"));
+    </script>
+</body>
+
+</html>

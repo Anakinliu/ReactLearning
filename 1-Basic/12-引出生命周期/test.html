@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="rong-qi"></div>
+
+    <script src="../js/17.0.1/react.development.js"></script>
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <script src="../js/17.0.1/babel.min.js"></script>
+
+    <script type="text/babel"> 
+        class A extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    num: "222",
+                    arr: [1,3,5]
+                }
+            }
+
+            handleChange = () => {
+                this.setState({
+                    num: this.state.num * 2,
+                    arr: this.state.arr.map(e => e*2)
+                })
+            }
+
+            render(h) {
+                return (
+                    <div>
+                        <span>这个B没有更新</span>
+                        <B num={999}/>
+                        <hr/>
+                        <button onClick={this.handleChange}>改变num</button>
+                        
+                        <hr/>
+                        <ul>
+                            { this.state.arr.map(e => {
+                                return (
+                                    <li key={e}> <B num={e}/> </li>
+                                )
+                            }) }
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        class B extends React.Component {
+            constructor(props) {
+                console.log('constructor');
+                super(props)
+            }
+            componentWillMount() {
+                console.log('B|componentWillMount');
+            }
+            componentDidMount() {
+                console.log('B|componentDidMount');
+            }
+            // 第一次接收在页面上显示不会调用
+            // 后面再更新props时才会调用
+            // componentWillReceiveProps() {
+            //     console.log('B|componentWillReceiveProps');
+            // }
+
+            // shouldComponentUpdate() {
+            //     console.log('B|shouldComponentUpdate');
+            //     return true;
+            // }
+
+            // componentWillUpdate() {
+            //     console.log('B|componentWillUpdate');
+            // }
+
+            // componentDidUpdate() {
+            //     console.log('B|componentDidUpdate');
+            // }
+
+            render(h) {
+                console.log('B|render');
+                return (
+                    <div>
+                        B得到的是: {this.props.num}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<A />, document.getElementById("rong-qi"));
+    </script>
+</body>
+
+</html>

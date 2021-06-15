@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>旧的生命周期函数</title>
 </head>
-    <style>
-        p {
-            text-align: center;
-        }
-    </style>
+<style>
+    p {
+        text-align: center;
+    }
+</style>
+
 <body>
     <div>
-    <p> <img src="react生命周期(旧).png" alt="" width="800px" > </p>
+        <p> <img src="react生命周期(旧).png" alt="" width="800px"> </p>
     </div>
     <div id="rong-qi"></div>
 
@@ -28,7 +29,11 @@
             constructor(props) {
                 super(props)
                 console.log('Life|Constructor');
+                this.state = {
+                    count: 0
+                }
             }
+            // 生命周期方法
             componentWillMount() {
                 console.log('LIFE|will mount');
             }
@@ -42,10 +47,7 @@
             // componentDidUnmount() {  
             //     console.log('LIFE|did unmount');
             // }
-            state = {
-                count: 0
-            }
-            
+
             componentWillUpdate() {
                 console.log('LIFE|will update');
             }
@@ -54,18 +56,24 @@
                 console.log('LIFE|did update');
             }
 
-            // 控制,是否执行后面的更新流程
             shouldComponentUpdate() {
                 console.log('LIFE| shoule update?');
                 // return true;
                 return false;
             }
 
+            // 自定义方法
+
             handleBtn = () => {
                 this.setState({
-                    count: this.state.count+1
+                    count: this.state.count + 1
                 })
             }
+
+            forceBtn = () => {
+                forceUpdate();
+            }
+
             unmountBtn = () => {
                 ReactDOM.unmountComponentAtNode(document.getElementById("rong-qi"));
             }
@@ -74,10 +82,11 @@
                 // console.log('render', this);
                 return (
                     <div>
-                        <h1 >当前点击 { this.state.count }</h1>
+                        <h1 >当前点击 {this.state.count}</h1>
                         <div></div>
-                        <button onClick={ this.handleBtn }>点击加一</button>
-                        <button onClick={ this.unmountBtn }>点击卸载组件</button>
+                        <button onClick={this.handleBtn}>点击加一</button>
+                        <button onClick={this.forceBtn}>强制更新</button>
+                        <button onClick={this.unmountBtn}>点击卸载组件</button>
 
                     </div>
                 )

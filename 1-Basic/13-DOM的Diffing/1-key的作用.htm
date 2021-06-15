@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>key的作用</title>
+</head>
+
+<body>
+    <div id="rong-qi"></div>
+
+    <script src="../js/17.0.1/react.development.js"></script>
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <script src="../js/17.0.1/babel.min.js"></script>
+
+    <script type="text/babel">
+        class KEY extends React.Component {
+
+            state = {
+                persons: [{ id: 1, name: "小赵" }, { id: 2, name: "小李" }]
+            }
+
+            handleBtn = () => {
+                const newP = { id: 3, name: "小王"}
+                this.setState(
+                    {
+                    persons: [newP, ...this.state.persons]
+                    }
+                )
+            }
+
+            render(h) {
+                return (
+                    <div>
+                        <button onClick={this.handleBtn}>逆序添加一个</button>
+                        <p>Persons(index as key): </p>
+                        <ul>
+                            {this.state.persons.map((e, index) => {
+                                return (
+                                    <li key={ index }> { e.name } <input type="text" /></li>
+                                )
+                            })}
+                        </ul>
+
+                        <p>Persons(person.id as key): </p>
+                        <ul>
+                            {this.state.persons.map((e, index) => {
+                                return (
+                                    <li key={ e.id }> { e.name } <input type="text" /></li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<KEY />, document.getElementById("rong-qi"))
+    </script>
+</body>
+
+</html>
