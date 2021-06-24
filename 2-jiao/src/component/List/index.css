@@ -1,0 +1,6 @@
+ul {
+    padding: 0;
+    border: black 1px solid;
+    border-bottom: none;
+    border-radius: 4px;
+}

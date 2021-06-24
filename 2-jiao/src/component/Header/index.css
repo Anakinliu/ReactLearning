@@ -1,0 +1,12 @@
+.todo-header {
+    display: flex;
+}
+
+.todo-input {
+    flex-grow: 1;
+    border-radius: 1em;
+    border: indianred 2px solid;
+    outline: none;
+    padding: 10px;
+    margin-bottom: 20px;
+}

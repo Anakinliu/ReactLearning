@@ -57,9 +57,9 @@
             }
 
             shouldComponentUpdate() {
-                console.log('LIFE| shoule update?');
-                // return true;
-                return false;
+                console.log('LIFE| should update?');
+                return true;
+                // return false;
             }
 
             // 自定义方法
@@ -71,7 +71,7 @@
             }
 
             forceBtn = () => {
-                forceUpdate();
+                this.forceUpdate();
             }
 
             unmountBtn = () => {
