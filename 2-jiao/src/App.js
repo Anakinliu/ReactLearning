@@ -1,55 +1,18 @@
-import React, { Component } from 'react'
-import './App.css'
+import React, { Component } from 'react';
+import './App.css';
+import Search from './component/Search';
+import ResultList from './component/Result';
 export default class App extends Component {
+
+    setUserArr = () => {
+
+    }
     render() {
         return (
             <div className="app">
                 <div className="main">
-                    <div className="search">
-                        <p>搜索</p>
-                        <input type="text" name="user-input" id="user-input" placeholder="输入" />
-                        <button>搜搜</button>
-                    </div>
-                    <div className="content">
-                        <ul className="list">
-                            <li className="item">
-
-                                <img src="1.png" alt="" srcset="" />
-                                <span>头像</span>
-
-                            </li>
-                            <li className="item">
-                                <img src="1.png" alt="" srcset="" />
-                                <span>头像</span>
-
-                            </li>
-                            <li className="item">
-                                <img src="1.png" alt="" srcset="" />
-                                <span>头像</span>
-
-                            </li>
-                            <li className="item">
-                                <img src="1.png" alt="" srcset="" />
-                                <span>头像</span>
-
-                            </li>
-                            <li className="item">
-                                <img src="1.png" alt="" srcset="" />
-                                <span>头像</span>
-
-                            </li>
-                            <li className="item">
-                                <img src="1.png" alt="" srcset="" />
-                                <span>头像</span>
-
-                            </li>
-                            <li className="item">
-                                <img src="1.png" alt="" srcset="" />
-                                <span>头像</span>
-
-                            </li>
-                        </ul>
-                    </div>
+                    <Search setUserArr={this.setUserArr} />
+                    <ResultList />
                 </div>
             </div>
         )
