@@ -22,7 +22,8 @@ input {
     /* 有了这个才能加滚动条 */
     width: 800px;
     height: 400px;
-    overflow-y: scroll;
+    /* 超出范围自动显示滚动条 */
+    overflow-y: auto;
     margin-top: 50px;
 
 }
@@ -38,12 +39,21 @@ input {
 
 .content li {
     width: 200px;
-    height: 250px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     list-style-type: none;
+    border: dimgray 1px solid;
+    padding: 5px;
+    margin: 5px;
 }
-.content li img {
+.content li a {
+    display: block;
+    text-align: center;
     width: 200px;
+}
+
+.content img {
+    width: 150px;
 }
