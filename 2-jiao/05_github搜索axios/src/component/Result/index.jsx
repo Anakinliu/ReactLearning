@@ -1,25 +1,8 @@
 import React, { Component } from 'react'
-import PubSub from 'pubsub-js'
 
 class ResultList extends Component {
-
-    state = {
-        limit: false,
-        beforeLoading: false,  // 是否在请求中
-        errMess: "",  // 请求失败的错误信息
-        userArr: []  
-    }
-
-    componentDidMount() {
-        PubSub.subscribe("AK47", (code, data) => {
-            // code就是AK47
-            this.setState(data);
-        })
-    }
-
     render() {
-        // const { userArr, beforeLoading, errMess, limit } = this.props;
-        const { userArr, beforeLoading, errMess, limit } = this.state;
+        const { userArr, beforeLoading, errMess, limit } = this.props;
         return (
             <div className="content">
                 <ul className="list">

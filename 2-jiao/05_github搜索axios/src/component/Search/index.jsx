@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import PubSub from 'pubsub-js'
 
 export default class Search extends Component {
 
@@ -12,18 +11,16 @@ export default class Search extends Component {
     handleSearch = (waitTime) => {
         // 拿到输入值
         const { userInput: { value } } = this;
-        console.log(value); 
+        console.log(value);
         // console.log(Date());
         if (this.state.lock) {
             // console.log(Date());
-            // this.props.updateAppState({limit: true})
-            PubSub.publish("AK47", { limit: true });
+            this.props.updateAppState({limit: true})
             console.log('动作太快了..');
             return
         }
 
-        // this.props.updateAppState({ beforeLoading: true });
-        PubSub.publish("AK47", { beforeLoading: true });
+        this.props.updateAppState({ beforeLoading: true });
         this.setState({
             lock: setTimeout(() => {
                 this.setState({
@@ -36,12 +33,7 @@ export default class Search extends Component {
         axios.get(`https://api.github.com/search/users?q=${value}`)
             .then(
                 success => {
-                    // this.props.updateAppState({
-                    //     beforeLoading: false,
-                    //     limit: false,
-                    //     userArr: success.data.items
-                    // });
-                    PubSub.publish("AK47", {
+                    this.props.updateAppState({
                         beforeLoading: false,
                         limit: false,
                         userArr: success.data.items
@@ -50,12 +42,7 @@ export default class Search extends Component {
                 },
                 error => {
                     // console.log('axios的get错误 : ', error.message);
-                    // this.props.updateAppState({
-                    //     beforeLoading: false,
-                    //     limit: false,
-                    //     errMess: error.message
-                    // });
-                    PubSub.publish("AK47", {
+                    this.props.updateAppState({
                         beforeLoading: false,
                         limit: false,
                         errMess: error.message
