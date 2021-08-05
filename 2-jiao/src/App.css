@@ -1,59 +1,14 @@
-input {
-    line-height: 2em;
+.highlight {
+    color: red;
 }
 
-
-.main {
-    width: 800px;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    justify-content: center;
+a {
+    text-decoration: none;
 }
 
-.search {
-    padding: 50px;
-    background-color: #eeeeee;
-    border-radius:25px;
+a:active  {
+    color: dimgrey;
 }
-
-.content {
-
-    /* 有了这个才能加滚动条 */
-    width: 800px;
-    height: 400px;
-    /* 超出范围自动显示滚动条 */
-    overflow-y: auto;
-    margin-top: 50px;
-
-}
-
-.content ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    flex-wrap: wrap;
-    
-}
-
-.content li {
-    width: 200px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    list-style-type: none;
-    border: dimgray 1px solid;
-    padding: 5px;
-    margin: 5px;
-}
-.content li a {
-    display: block;
-    text-align: center;
-    width: 200px;
-}
-
-.content img {
-    width: 150px;
+a:hover {
+    color: yellow;
 }

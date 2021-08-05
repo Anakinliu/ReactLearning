@@ -33,7 +33,7 @@ export default class Search extends Component {
         });
         
         // 使用axios发送请求
-        axios.get(`https://api.github.com/search/users?q=${value}`)
+        axios.get(`http://localhost:3000/api/search/users2`)
             .then(
                 success => {
                     // this.props.updateAppState({
