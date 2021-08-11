@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Link, Route, BrowserRouter, NavLink, Switch, Redirect } from 'react-router-dom'
+import { Link, Route, HashRouter, NavLink, Switch } from 'react-router-dom'
 
 import './App.css';
 import Nav from './component/Nav'
 import Footer from './pages/Footer';
 import Header from './pages/Header';
-import MyNavLink from './component/MyNavLink';
 import Info from './pages/Info';
-import NotFound from './pages/NotFound';
+import MyNavLink from './component/MyNavLink';
 export default class App extends Component {
 
     // state = {
@@ -26,7 +25,7 @@ export default class App extends Component {
             <div className="app">
                 <Nav />
                 <hr />
-                <BrowserRouter>
+                <HashRouter>
                     <div className="main">
                         <ul>
                             <li>
@@ -36,36 +35,19 @@ export default class App extends Component {
                                 <MyNavLink to={"/cn/foot"} ><p>去Foot</p></MyNavLink>
                                 {/* <NavLink activeClassName="highlight" to="/foot">去Foot</NavLink> */}
                             </li>
-                            <li>
-                                <MyNavLink to={"/cn/info"} ><p>去Info</p></MyNavLink>
-                                
-                            </li>
-    
                         </ul>
                     </div>
                     <hr />
                     <Switch>
-                        {/*  url 必须就是/cn/head才能匹配 */}
-                        <Route exact path="/cn/head">
+                        <Route path="/cn/head">
                             <Header />
                         </Route>
-                        {/*  url 是/cn/foot/xxx或者cn/foot/xxx/xxx...等等 都能匹配 */}
                         <Route path="/cn/foot">
                             <Footer />
                         </Route>
-                        <Route path="/cn/info">
-                            <Info />
-                        </Route>
-                        <Route path="/404">
-                            <NotFound/>
-                        </Route>
-                        {/* 在地址栏敲/xxxxx都会定向到/somewhere */}
-                        <Redirect to="/404">
-
-                        </Redirect>
                     </Switch>
 
-                </BrowserRouter>
+                </HashRouter>
 
 
             </div>

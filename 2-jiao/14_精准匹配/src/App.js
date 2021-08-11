@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Link, Route, BrowserRouter, NavLink, Switch, Redirect } from 'react-router-dom'
+import { Link, Route, HashRouter, BrowserRouter, NavLink, Switch, Redirect } from 'react-router-dom'
 
 import './App.css';
 import Nav from './component/Nav'
 import Footer from './pages/Footer';
 import Header from './pages/Header';
 import MyNavLink from './component/MyNavLink';
-import Info from './pages/Info';
 import NotFound from './pages/NotFound';
 export default class App extends Component {
 
@@ -36,11 +35,6 @@ export default class App extends Component {
                                 <MyNavLink to={"/cn/foot"} ><p>去Foot</p></MyNavLink>
                                 {/* <NavLink activeClassName="highlight" to="/foot">去Foot</NavLink> */}
                             </li>
-                            <li>
-                                <MyNavLink to={"/cn/info"} ><p>去Info</p></MyNavLink>
-                                
-                            </li>
-    
                         </ul>
                     </div>
                     <hr />
@@ -53,15 +47,9 @@ export default class App extends Component {
                         <Route path="/cn/foot">
                             <Footer />
                         </Route>
-                        <Route path="/cn/info">
-                            <Info />
-                        </Route>
-                        <Route path="/404">
-                            <NotFound/>
-                        </Route>
                         {/* 在地址栏敲/xxxxx都会定向到/somewhere */}
-                        <Redirect to="/404">
-
+                        <Redirect to="/somewhere">
+                            <NotFound />
                         </Redirect>
                     </Switch>
 

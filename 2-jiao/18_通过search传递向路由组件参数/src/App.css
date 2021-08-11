@@ -1,0 +1,14 @@
+.highlight {
+    color: red;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:active  {
+    color: dimgrey;
+}
+a:hover {
+    color: yellow;
+}

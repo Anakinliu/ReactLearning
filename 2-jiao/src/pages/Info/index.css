@@ -1,0 +1,10 @@
+.info-ul {
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+}
+.info-ul li {
+    width: 100px;
+    margin: 0 10px;
+    border: 2px dashed red;
+}
