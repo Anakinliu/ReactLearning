@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        // let x = React.createElement("p", { id: "recipe-0" }, "咯热门所得税的风格的");
+        // console.log(x);
+        // ReactDOM.render([x, x], document.querySelector("#root"));
+        // let ul = React.createElement(
+        //     "ul",
+        //     null,
+        //     React.createElement("li", null, "sadasdsd"),
+        //     React.createElement("li", null, "sadasdsd"),
+        //     React.createElement("li", null, "sadasdsd"),
+        // )
+        // console.log(ul);
+        // let childrenData = ["sadasdsd", "sadasdsd", "sadasdsd"];
+        // let ul2 = React.createElement(
+        //     "ul",
+        //     null,
+        //     childrenData.map((ele, idx) => React.createElement("li", { key: idx }, ele))
+        // )
+        // console.log(ul2);
+        // ReactDOM.render(ul2, document.querySelector("#root"));
+
+        const secretIngredients = [
+            "1 cup unsalted butter",
+            "1 cup crunchy peanut butter",
+            "1 cup brown sugar",
+            "1 cup white sugar",
+            "2 eggs",
+            "2.5 cups all purpose flour",
+            "1 teaspoon baking powder",
+            "0.5 teaspoon salt"
+        ];
+
+
+        function IngredientsList() {
+            return React.createElement(
+                "ul",
+                { className: "ingredients" },
+                items.map((ele, idx) => React.createElement("li", { key: idx }, ele)),
+            );
+        }
+
+        let x = React.createElement(IngredientsList, { items2: secretIngredients }, null);
+        console.log(x);
+        // secretIngredients[0] = "666";
+        // ReactDOM.render(
+        //     x,
+        //     document.getElementById("root")
+        // );
+    </script>
+</body>
+
+</html>

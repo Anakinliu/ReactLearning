@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js">
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- 加入babel编译JSX为JS代码 -->
+    <script type="text/babel">
+        const data = [
+            { id: 'a0', list: ["sada", "erer", "fgfg"] },
+            { id: 'a1', list: ["tyty", "uiui", "vcbv"] }
+        ];
+        // 单个Recipe组件函数
+        function Recipe({ list }) {
+            return (
+                <div className="recipe-div">
+                    {list.map((ele, idx) => {
+                        return (
+                            <li key={idx}> {ele} </li>
+                        )
+                    })}
+                </div>
+            )
+        }
+        // Recipe的菜单组件
+        function Menu(props) {
+            return (
+                <div className="menu">
+                    <p>菜单 @copy;</p>
+                    { ['cc', <span>@copy;</span>, '2015'].map(ele => {
+                        return ele
+                    }) 
+                    }
+                    {props.recipes.map((ele, idx) => {
+                        return (
+                            <div key={ele.id}>
+                                <p> menu {idx + 1} :</p>
+                                <ul >
+                                    <Recipe /*123*/ {...ele} />
+                                </ul>
+                            </div>
+                        )
+                    })}
+                </div>
+            )
+        }
+        ReactDOM.render(
+            <Menu recipes={data}
+            /*
+            1234
+            */
+            />,
+            document.querySelector("#root")
+        )
+        setTimeout(() => {
+            data[0].list[0] = "66666666666666";
+            // 手动重新渲染
+            ReactDOM.render(
+                <Menu recipes={data} />,
+                document.querySelector("#root")
+            )
+        }, 2000);
+
+    </script>
+</body>
+
+</html>

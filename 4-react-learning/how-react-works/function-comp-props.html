@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+
+const secretIngredients = [
+    "1 cup unsalted butter",
+    "1 cup crunchy peanut butter",
+    "1 cup brown sugar",
+    "1 cup white sugar",
+    "2 eggs",
+    "2.5 cups all purpose flour",
+    "1 teaspoon baking powder",
+    "0.5 teaspoon salt"
+];
+
+function IngredientsList(propsss) {
+    return React.createElement(
+        "ul",
+        { className: "ingredients" },
+        propsss.items2.map((ele, idx) => React.createElement("li", { key: idx }, ele)),
+    );
+}
+
+let x = React.createElement(IngredientsList, { items2: secretIngredients }, null);
+// console.log(x);
+ReactDOM.render(x, document.querySelector("#root"))
+
+    </script>
+</body>
+
+</html>

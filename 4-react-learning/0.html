@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script defer>
+        const getPeople = count => {
+            return new Promise((resolve, reject) => {
+                const api = `https://api.randomuser.me/?nat=US&results=${count}`;
+                const request = new XMLHttpRequest();
+                request.open('GET', api);
+                request.onload = () => {
+                    return request.status === 200 ? resolve(JSON.parse(request.response).results) : reject(Error(request.statusText));
+                }
+                request.onerror = err => reject(err);
+                request.send();
+            })
+        }
+
+        const userLogs = userName => message => console.log(`${userName} -> ${message}`);
+        const myLog = userLogs('Tom');
+        getPeople(2).then(
+            members => myLog(`成功加载${members.length} 个`),
+            error => myLog(`遇到错误`)
+        )
+
+    </script>
+</body>
+
+</html>
